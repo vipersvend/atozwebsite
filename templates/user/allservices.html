@@ -1,0 +1,31 @@
+{% extends 'user/base.html' %}
+{%load static%}
+
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4 mx-2 mb-2" style="font-family: Alata, sans-serif;/*border-color: rgb(19,28,65);*/color: rgb(33,48,114);font-weight: 600;">Our Services</h1>
+        <section class="py-1">
+            <div class="container">
+                <div class="row filtr-container" style="visibility: visible; padding: 0px; position: relative;">
+                    {% for service in services %}
+                    <div class="col-md-6 col-lg-4 filtr-item" data-category="1" style="opacity: 1; transform: scale(1) translate3d(0px, 0px, 0px); backface-visibility: hidden; perspective: 1000px; transform-style: preserve-3d; transition: all 0.5s ease-out 0ms;">
+                        <div class="card border-dark">
+                            <div class="card-header bg-dark text-light">
+                                <h5 class="m-0">{{service.service_name}}</h5>
+                            </div><img class="img-fluid card-img w-100 d-block rounded-0" src="{% static 'img/' %}/{{service.service_image_name}}">
+                            <div class="card-body">
+                                <p class="card-text">{{service.service_description}}<br></p>
+                            </div>
+                            <div class="d-flex card-footer"><a href="{{URL}}/service/{{service.service_id}}"><button class="btn btn-outline-dark btn-sm ml-auto" type="button"><i class="fa fa-caret-right"></i>&nbsp;Hire</button></a></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+
+</div>
+   
+{% endblock %}

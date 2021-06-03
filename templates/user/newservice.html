@@ -1,0 +1,69 @@
+{% extends 'user/base.html' %}
+{%load static%}
+
+{% block content %}
+
+    <section class="getintouch">
+        <div class="container modern-form">
+            <div class="text-center">
+                <h4 style="color: #212529;font-size: 45px;">New Service</h4>
+            </div>
+            <hr class="modern-form__hr">
+            <div class="modern-form__form-container">
+                <form method = 'post' action = ''  enctype="multipart/form-data">
+                    {%csrf_token%}
+                    <div class="form-row">
+                        <div class="col col-contact">
+                            <div class="form-group modern-form__form-group--padding-r"><input class="form-control input input-tr" type="text" name = 'service_name' placeholder="Service Name">
+                                <div class="line-box">
+                                    <div class="line"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top: 20px;">
+                        <div class="col col-contact">
+                            <div class="form-group modern-form__form-group--padding-r">
+                                <div class="line-box" style="padding-left: 12px;"><label style="color: rgb(108,117,125);">Display Image</label><input type="file" type="file" name="service_image" class="input input-tr" style="margin-left: 20px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--div class="form-row pt-3">
+                        <div class="col col-contact">
+                            <div class="form-group modern-form__form-group--padding-r">
+                                <select class="form-control" name = 'service_location' style="background: transparent;border-bottom: 1px solid silver;/*border-radius: 0px !important;*/">
+                                
+                                <optgroup label="Select Location">
+                                {% for location in locations %}
+                                <option value="{{location.location_id}}" selected="">{{location.location_name}}</option>
+
+                                {% endfor %}
+                            </optgroup>
+                        </select></div>
+                        </div>
+                    </div-->
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group modern-form__form-group--padding-t"><textarea class="form-control input modern-form__form-control--textarea" name = 'service_description' placeholder="Service Description"></textarea>
+                                <div class="line-box">
+                                    <div class="line"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top: 40px;">
+                        <div class="col text-center"><button class="btn btn-primary submit-now" type="submit">Submit Now</button></div>
+                    </div>
+                </form>
+            </div>
+            <div class="toast fade hide" role="alert">
+                <div class="toast-header"><img class="mr-2"><strong class="mr-auto">Title</strong><small>10 min ago</small><button class="close ml-2 mb-1 close" data-dismiss="toast"><span aria-hidden="true">×</span></button></div>
+                <div class="toast-body" role="alert">
+                    <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    {% endblock %}

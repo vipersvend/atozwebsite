@@ -1,0 +1,48 @@
+{% extends 'user/base.html' %}
+{%load static%}
+
+
+{% block content %}
+<div class="container">
+        <h1 class="mt-4 mx-2 mb-2" style="font-family: Alata, sans-serif;/*border-color: rgb(19,28,65);*/color: rgb(33,48,114);font-weight: 600;">Our Service Providers</h1>
+        <section class="card-section-imagia">
+            <div class="container">
+                <div class="row">
+
+                    {% for provider in providers %}
+                    <div class="col-sm-6 col-md-4">
+                        <div class="card-container-imagia">
+                            <div class="card-imagia">
+                                <div class="front-imagia">
+                                    <div class="cover-imagia"><img alt="" src="https://unsplash.it/720/500?image=1067"></div>
+                                    <div class="user-imagia"><img class="img-circle" alt="" src="{% static 'img/'%}/{{provider.provider_image_name}}"></div>
+                                    <div class="content-imagia">
+                                        <h3 class="name-imagia">{{provider.provider_name}}</h3>
+                                        <p class="subtitle-imagia">{{provider.provider_number}} </p>
+                                        <p class="text-center"><em>{{provider.provider_service}}, {{provider.provider_location}}</em></p>
+                                    </div>
+                                    <div class="footer-imagia"><span><i class="fa fa-plus"></i> More info</span></div>
+                                </div>
+                                <div class="back-imagia">
+                                    <div class="content-imagia content-back-imagia">
+                                        <div>
+                                            <h3 class="text-center">Bio Data</h3>
+                                            <p class="text-center">{{provider.provider_bio}} </p>
+                                        </div>
+                                    </div>
+                                    <div class="footer-imagia">
+                                        <div class="social-imagia text-center"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-twitter"></i></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+    </div>
+   
+{% endblock %}

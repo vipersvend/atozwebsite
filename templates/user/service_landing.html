@@ -1,0 +1,21 @@
+{% extends 'user/base.html' %}
+{%load static%}
+
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4 mx-2 mb-2" style="font-family: Alata, sans-serif;/*border-color: rgb(19,28,65);*/color: rgb(33,48,114);font-weight: 600;">Our Services</h1>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-12"><img class="img-thumbnail img-fluid center-block" src="{% static 'img/' %}{{service.service_image_name}}" /></div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <h1>{{service.service_name}}</h1>
+                <p>{{service.service_description}}</p><!--button class="btn btn-danger btn-lg action-button" type="button"> Add to Cart</button--></div>
+        </div>
+
+</div>
+   
+{% endblock %}
