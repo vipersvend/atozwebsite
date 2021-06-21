@@ -8,5 +8,5 @@
 
 ## Screenshots
 
-[image](Screenshots/screenshot_1.png)
-[image](Screenshots/screenshot_2.png)
+![image](Screenshots/screenshot_1.png)
+![image](Screenshots/screenshot_2.png)
