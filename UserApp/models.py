@@ -41,7 +41,12 @@ class UserProfile(User):
 
     #def __str__(self):
     #    return self.email_id
-
+class Category(models.Model):
+    category_id = models.CharField(max_length = 10, db_index = True, unique = True)
+    category_name = models.CharField(max_length = 20, unique = True, db_index = True)
+    category_image_name = models.CharField(max_length = 50)
+    def __str__(self):
+        return self.category_id + ' ' + self.category_name
 class Services(models.Model):
     service_id = models.CharField(max_length = 10, db_index = True,  unique=True)
     service_name = models.CharField(max_length = 300, db_index=True)
@@ -61,7 +66,7 @@ class Services(models.Model):
         null=False,
         max_length = 99999
     )
-
+    category = models.CharField(max_length = 10)
     service_visible = models.BooleanField(default = False)
     def __str__(self):
         return self.service_name
@@ -98,8 +103,7 @@ class ServiceProviders(models.Model):
     provider_bio = models.CharField(max_length = 500, default = "No Bio")
     def __str__(self):
         return self.provider_id + '  ' + self.provider_name
-
-
+    
 class Dummy(models.Model):
     name = models.CharField(max_length=150)
     email = models.CharField(max_length = 150)
@@ -109,3 +113,8 @@ class Dummy(models.Model):
     def __str__(self):
         return self.name + ' ' + self.email
 
+class PasswordReset(models.Model):
+    email = models.CharField(max_length = 150, unique = True)
+    otp_id = models.CharField(max_length = 50, unique = True)
+    def __str__(self):
+        return self.email + ' '+ self.otp_id

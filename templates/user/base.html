@@ -1,117 +1,175 @@
 <!DOCTYPE html>
 {%load static%}
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
     <title>AtoZ Sabkuch</title>
-    <link rel="stylesheet" href="{% static 'user/assets/bootstrap/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alata">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amita">
-    <link rel="stylesheet" href="{% static 'user/assets/fonts/ionicons.min.css' %}">
-    <link rel="stylesheet" href="{% static 'user/assets/css/styles.min.css' %}">
-</head>
+    <link
+      rel="stylesheet"
+      href="{% static 'user/assets/bootstrap/css/bootstrap.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Alata"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Amita"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'user/assets/fonts/ionicons.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'user/assets/css/styles.min.css' %}"
+    />
+  </head>
 
-<body>
+  <body>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
-        <div class="container"><a class="navbar-brand" href="{{URL}}/"><img src="{% static 'user/assets/img/logo.png' %}" style="width: 130px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div
-                class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav mr-auto" style="font-family: Alata, sans-serif;">
-                    <li class="nav-item"><a class="nav-link" href="{{URL}}/allservices/">All Services</a></li>
-                    <!--li class="nav-item"><a class="nav-link" href="{{URL}}/register/">Register</a></li-->
-                    
-                    {% if user.is_superuser %}
-                    <li class="nav-item"><a class="nav-link" href="{{URL}}/new_service/">New Service</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{URL}}/new_provider/">New Provider</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{URL}}/serviceproviders/">All Providers</a></li>
-                    {% endif %}
+      <div class="container">
+        <a class="navbar-brand" href="{{URL}}/"
+          ><img
+            src="{% static 'user/assets/img/logo.png' %}"
+            style="width: 130px" /></a
+        ><button
+          data-toggle="collapse"
+          class="navbar-toggler"
+          data-target="#navcol-1"
+        >
+          <span class="sr-only">Toggle navigation</span
+          ><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <ul
+            class="nav navbar-nav mr-auto"
+            style="font-family: Alata, sans-serif"
+          >
+            <!--li class="nav-item"><a class="nav-link" href="{{URL}}/register/">Register</a></li-->
 
-                    <li class="nav-item dropdown"><a data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle nav-link" href="#">Services</a>
-                        <div class="dropdown-menu">
-                        {% for service in services %}
-                            <a class="dropdown-item" href="#">{{service.service_name}}</a>
-                        {% endfor %}
-                        </div>
-                    </li>
-                    
-                </ul>
-                {% if user.is_authenticated %}
-                    <span class="navbar-text actions"> 
-                        <a class="btn btn-light action-button" role="button" href="{{URL}}/logout/">Logout</a>
-                    </span>
-                {% else %}
-                    <span class="navbar-text actions"> 
-                        <a class="login" href="{{URL}}/login/">Log In</a>
-                        <a class="btn btn-light action-button" role="button" href="{{URL}}/register/">Sign Up</a>
-                    </span>
-                {% endif %}
-                </div>
+            {% if user.is_superuser %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{URL}}/new_category/">New Category</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{URL}}/new_provider/">New Provider</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{URL}}/serviceproviders/">Providers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{URL}}/new_service/">New Service</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{URL}}/allservices/">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{URL}}/categories/">Categories</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                data-toggle="dropdown"
+                aria-expanded="false"
+                class="dropdown-toggle nav-link"
+                href="#"
+                >Services</a
+              >
+              <div class="dropdown-menu">
+                {% for service in services %}
+                <a class="dropdown-item" href="#">{{service.service_name}}</a>
+                {% endfor %}
+              </div>
+            </li>
+          </ul>
+          {% if user.is_authenticated %}
+          <span class="navbar-text actions">
+            <a
+              class="btn btn-light action-button"
+              role="button"
+              href="{{URL}}/logout/"
+              >Logout</a
+            >
+          </span>
+          {% else %}
+          <span class="navbar-text actions">
+            <a class="login" href="{{URL}}/login/">Log In</a>
+            <a
+              class="btn btn-light action-button"
+              role="button"
+              href="{{URL}}/register/"
+              >Sign Up</a
+            >
+          </span>
+          {% endif %}
         </div>
+      </div>
     </nav>
 
-
-
-    {%block content%}
-
-    {%endblock%}
-
+    {%block content%} {%endblock%}
 
     <div class="footer-dark">
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-md-3 item">
-                        <h3>Services</h3>
-                        <ul>
-                        {% for service in services %}
-                            <li><a href="#">{{service.service_name}}</a></li>
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 col-md-3 item">
+              <h3>Services</h3>
+              <ul>
+                {% for service in services %}
+                <li><a href="#">{{service.service_name}}</a></li>
 
-                        {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-3 item">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="#">Company</a></li>
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Careers</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6 item text">
-                        <h3>AtoZSabkuch.com</h3>
-                        <p><a href="{{URL}}">A to Z Sabkuch</a>.com makes all businesses easy<br> We provide you with a one-stop option to all your daily needs. Right from Domestic Services to Shopping!<br></p>
-                    </div>
-                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
-                </div>
+                {% endfor %}
+              </ul>
             </div>
-        </footer>
+            <div class="col-sm-6 col-md-3 item">
+              <h3>About</h3>
+              <ul>
+                <li><a href="#">Company</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="#">Careers</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6 item text">
+              <h3>AtoZSabkuch.com</h3>
+              <p>
+                <a href="{{URL}}">A to Z Sabkuch</a>.com makes all businesses
+                easy<br />
+                We provide you with a one-stop option to all your daily needs.
+                Right from Domestic Services to Shopping!<br />
+              </p>
+            </div>
+            <div class="col item social">
+              <a href="#"><i class="icon ion-social-facebook"></i></a
+              ><a href="#"><i class="icon ion-social-twitter"></i></a
+              ><a href="#"><i class="icon ion-social-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
     <script src="{% static 'user/assets/js/jquery.min.js' %}"></script>
     <script src="{% static 'user/assets/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'user/assets/js/script.min.js' %}"></script>
-</body>
-<script type="text/javascript">
+  </body>
+  <script type="text/javascript">
+    function sync_session() {
+      console.log("Session Sync Initiated");
 
-        function sync_session(){
-        
-                console.log('Session Sync Initiated');
+      var session_data = JSON.parse("{{session_data|escapejs}}");
 
-                var session_data = JSON.parse("{{session_data|escapejs}}");
+      if (session_data["location"] == "") {
+        $("#locationmodal").modal("toggle");
+      }
 
-                if(session_data['location'] == ''){
-                    $('#locationmodal').modal('toggle');
-                }
+      console.log("user location is:", session_data["location"]);
+    }
 
-                
-                console.log('user location is:', session_data['location'])
-
-        }
-
-        sync_session();
-    
-    
-</script>
+    sync_session();
+  </script>
 </html>
-

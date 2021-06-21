@@ -1,0 +1,40 @@
+{% extends 'user/base.html' %} {%load static%} {% block content %}
+<style>
+  .card-inner {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+  }
+</style>
+
+<div class="container">
+  <h1
+    class="mt-4 mx-2 mb-2"
+    style="
+      font-family: Alata, sans-serif; /*border-color: rgb(19,28,65);*/
+      color: rgb(33, 48, 114);
+      font-weight: 600;
+    "
+  >
+    Our Categories
+  </h1>
+
+  <div class="row">
+    {% for category in categories %}
+    <div class="card" style="width: 25%; padding: 20px; border: 0px">
+      <div class="card-inner">
+        <img
+          class="card-img-top"
+          src="{% static 'img/'%}/{{category.category_image_name}}"
+          alt="Category-Image"
+        />
+        <div class="card-body">
+          <a href = "{{URL}}/category/{{category.category_id}}"><p class="card-text">{{category.category_name}}</p>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+
+</div>
+
+{% endblock %}
