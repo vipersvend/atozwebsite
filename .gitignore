@@ -1,4 +1,2 @@
 credentials.py
-__pycache__/
-a2z/__pycache__/
-UserApp/__pycache__/
+**/__pycache__
