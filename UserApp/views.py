@@ -19,6 +19,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 URL = settings.URL
 from django.contrib.auth import logout
 from django.db import connection
+from django.contrib.auth.decorators import login_required
+from django.core import serializers
 cursor = connection.cursor()
 
 #query = "delete from  UserApp_serviceproviders;;"
@@ -406,8 +408,10 @@ def change_password(request, otp_id):
     if request.method == 'POST':
         try:
             print(request.POST.get('emailid'),request.POST.get('otp_id'))
-            resetobj = PasswordReset.objects.get(email = request.POST.get('emailid'), otp_id = request.POST.get('otp_id'))
-
+            try:
+                resetobj = PasswordReset.objects.get(email = request.POST.get('emailid'), otp_id = request.POST.get('otp_id'))
+            except:
+                return HttpResponse('Password Reset Link has been Expired')
             user = User.objects.get(email = request.POST.get('emailid'))
 
             user.set_password(request.POST.get('password'))
@@ -419,7 +423,10 @@ def change_password(request, otp_id):
         except:
             return redirect('changepassword')
     update_context()
-    email = PasswordReset.objects.get(otp_id = otp_id).email
+    try:
+        email = PasswordReset.objects.get(otp_id = otp_id).email
+    except:
+        return HttpResponse('Password Reset Link has been Expired')
     main_context['emailid'] = email
     main_context['otp_id'] = otp_id
     return render(request, 'user/changepassword.html', main_context)
@@ -429,3 +436,25 @@ def emailsent(request):
     update_context()
     
     return render(request, 'user/emailsent.html', main_context)
+
+@login_required(login_url = 'login')
+def book_service(request, service_id):
+    self_profile = UserProfile.objects.get(username = request.user)
+    new_order = Orders.objects.create(
+        order_id = ''.join(random.choices(string.ascii_uppercase + string.digits,k= 10)),
+        order_customer = self_profile,
+        order_services = [service_id],
+        order_total_bill  = 99
+    )
+    return redirect('my_orders')
+
+def my_orders(request):
+    try:
+        self_profile = UserProfile.objects.get(username = request.user)
+    except:
+        return redirect('login')
+    request.session['my_orders'] = json.loads(serializers.serialize('json',[Services.objects.get(service_id = order.order_services[0]) for order in Orders.objects.all().filter(order_customer = self_profile)]))
+    print(request.session['my_orders'])
+    print(type(request.session['my_orders']))
+    update_context()
+    return render(request, 'user/myorders.html',main_context)

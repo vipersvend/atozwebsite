@@ -21,6 +21,6 @@ urlpatterns = [
     path('forgotpassword/', views.forgotpassword, name = 'forgotpassword'),
     path('change_password/<str:otp_id>', views.change_password, name=  'changepassword'),
     path('emailsent/', views.emailsent, name = 'emailsent'),
-    
-     
+    path('book_service/<str:service_id>', views.book_service, name = 'book_service'),
+    path('my_orders/', views.my_orders, name = 'my_orders')    
 ]

@@ -28,8 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-URL = "http://127.0.0.1:8000"
-
+#URL = "http://127.0.0.1:8000"
+#URL = "http://192.168.29.190"
+URL = "http://ec2-3-80-138-128.compute-1.amazonaws.com/"
 # Application definition
 
 INSTALLED_APPS = [
