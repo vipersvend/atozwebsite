@@ -43,6 +43,7 @@ main_context = {
 
 
 def update_context():
+    global main_context
     main_context = {}
     main_context['providers'] = ServiceProviders.objects.all()
     main_context['services'] = Services.objects.all()
